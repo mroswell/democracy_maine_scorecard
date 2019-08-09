@@ -19,7 +19,7 @@ info.onAdd = function (map) {
 
 info.update = function (props) {
     this._div.innerHTML = (props ?
-        '<b>' + props.NAMELSAD + '</b><br />' + props.AWATER + ' people / mi<sup>2</sup>'
+        '<b>' + props.NAMELSAD + '</b>'
         : 'Hover over a district');
 };
 
@@ -51,7 +51,7 @@ var geoStyle = function(data) {
         opacity: 0.3,
         color: '#666',
         dashArray: '0',
-        fillOpacity:.7
+        fillOpacity:.6
     }
 };
 
@@ -74,15 +74,6 @@ function showInfo(sheet_data, tabletop) {
     var sourcebox = $("#senate-template-infobox").html();
     app.infoboxTemplate = Handlebars.compile(sourcebox);
 
-    // for (i = 0; i < sheet_data.length; i++) {
-    //     console.log("showInfo", sheet_data[i]);
-    //     scoreColor = getColor(sheet_data[i].score_2019);
-    //     sheet_data[i]['scoreColor'] = scoreColor;
-    //     console.log("showinfo THISSSSS",MESenateDistricts[sheet_data[i]);
-    //     MESenateDistricts[sheet_data[i].current_district] = sheet_data[i];
-    //     var html = template(sheet_data[i]);
-    //     $("#content").append(html);
-    // }
     $.each(tabletop.sheets("Maine State Senate").all(), function(i, member) {
         scoreColor = getColor(member.score_2019);
         member['scoreColor'] = scoreColor;
@@ -92,7 +83,6 @@ function showInfo(sheet_data, tabletop) {
         MESenateDistricts[member.current_district].partyAbbrev = MESenateDistricts[member.current_district].current_party.charAt(0).toUpperCase();
         var html = template(member);
         $("#content").append(html);
-        //    console.log(MDSenateDistricts[member.district].partyAbbrev);
 
     });
     loadGeo();
@@ -127,15 +117,6 @@ function getColor(score) {
                         'rgb(255,0,0)';
 }
 
-function style(feature) {
-    return {
-        weight: 1,
-        opacity: 1,
-        color: 'white',
-        fillOpacity: 0.7,
-        fillColor: getColor(feature.properties.AWATER)
-    };
-}
 
 function highlightFeature(e) {
     var layer = e.target;
@@ -174,11 +155,6 @@ function onEachFeature(feature, layer) {
         click: zoomToFeature
     });
 }
-
-// senateLayer = L.geoJson(geosenate, {
-//     onEachFeature: onEachFeature,
-//     style: geoStyle
-// }).addTo(map);
 
 map.attributionControl.addAttribution('District Boundaries &copy; <a href="http://census.gov/">US Census Bureau</a>');
 
