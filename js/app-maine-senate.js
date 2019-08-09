@@ -1,4 +1,5 @@
 var public_spreadsheet_url = '1nQt3d78MuITuaIzIQOep17c3ATm3uazA_S1BfocUQgU';
+var MESenateDistricts = {};
 var app = {};
 var map = L.map('map', {scrollWheelZoom: false}).setView([45.3, -69], 7);
 
@@ -8,10 +9,28 @@ function init() {
         simpleSheet: true } )
 }
 
-function showInfo(data, tabletop) {
-    alert('Successfully processed!')
-    console.log(data);
-}
+
+var geoStyle = function(data) {
+    var dist = data.properties.NAMELSAD.split(' ').pop();
+    console.log(dist);
+    // var sldlst = data.properties.SLDLST;
+    // sldlst = sldlst.replace(/^0+/, '');
+    // var fillColor = getColor(MESenateDistricts[dist].score_2019.toString());
+    // var rownum = Number(data.properties.rownum);
+    console.log("geoStyle MESenateDistricts[dist]",MESenateDistricts);
+
+    // var score = MESenateDistricts[dist].score_2019;
+    var scoreColor = getColor(score);
+
+    return {
+        fillColor: scoreColor,
+        weight: 2,
+        opacity: 0.3,
+        color: '#666',
+        dashArray: '0',
+        fillOpacity:.7
+    }
+};
 
 window.addEventListener('DOMContentLoaded', init)
 
@@ -20,27 +39,42 @@ var dist;
 $(document).ready(function () {
     Tabletop.init( { key: public_spreadsheet_url,
         callback: showInfo,
-        simpleSheet: true } )
+        simpleSheet: true } );
 // }
 // showInfo(data);
     loadGeo();
 });
-function showInfo(data) {
-    console.log(data)
+function showInfo(sheet_data, tabletop) {
     var scoreColor;
     var source = $("#senate-template").html();
     var template = Handlebars.compile(source);
     var sourcebox = $("#senate-template-infobox").html();
     app.infoboxTemplate = Handlebars.compile(sourcebox);
 
-    for (i = 0; i < data.length; i++) {
-        scoreColor = getColor(data[i].score_2019);
-        data[i]['scoreColor'] = scoreColor;
-// MDSenateDistricts[data[i].rownum] = data[i];
-        var html = template(data[i]);
+    for (i = 0; i < sheet_data.length; i++) {
+        console.log("showInfo", sheet_data[i]);
+        scoreColor = getColor(sheet_data[i].score_2019);
+        sheet_data[i]['scoreColor'] = scoreColor;
+        console.log("showinfo THISSSSS", MESenateDistricts[sheet_data[i]]);
+        MESenateDistricts[sheet_data[i].current_district] = sheet_data[i];
+        console.log("looksee showInfo",MESenateDistricts[i], MESenateDistricts);
+        var html = template(sheet_data[i]);
         $("#content").append(html);
     }
 }
+// function showInfo(data, tabletop) {
+//     $.each( tabletop.sheets("Sheet1").all(), function(i, member) {
+//         MEDistricts[member.district] = member;
+//     });
+//     loadGeo();
+// }
+
+
+
+
+
+
+
 
 function loadGeo(district) {
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
@@ -92,7 +126,12 @@ function style(feature) {
 
 function highlightFeature(e) {
     var layer = e.target;
+    var memberDist = layer.feature.properties.NAMELSAD;
+    var memberNumber = memberDist.split(' ').pop();
+    console.log("highlightFeature", memberDist, memberNumber)
 
+    var memberDetail = MESenateDistricts[memberNumber];
+    console.log(memberDetail)
     layer.setStyle({
         weight: 5,
         color: '#666',
@@ -128,7 +167,8 @@ function onEachFeature(feature, layer) {
 
 geojson = L.geoJson(geosenate, {
     style: style,
-    onEachFeature: onEachFeature
+    onEachFeature: onEachFeature,
+    style: geoStyle
 }).addTo(map);
 
 map.attributionControl.addAttribution('District Boundaries &copy; <a href="http://census.gov/">US Census Bureau</a>');

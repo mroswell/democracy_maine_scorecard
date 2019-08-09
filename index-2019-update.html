@@ -33,27 +33,27 @@
       </span>
                 <br><small>Find out your legislators' scores.</small></h2>
         </div>
-        <div class="row">
+            <div class="row">
                 <div class="col-xs-4 default-text">&nbsp;</div>
                 <div class="col-xs-8">
-                <div class='my-legend'>
-                    <!--div class='legend-title'>Legend:</div-->
-                    <div class='legend-scale'>
-                        <ul class='legend-labels' style='text-align:center'>
-                            <li>Legend:</li>
-                            <li><span style='background:rgb(255,0,0)'></span>0%</li>
-                            <li><span style='background:#FC8400'></span>1-24%</li>
-                            <li><span style='background:#FDC300'></span>25-49%</li>
-                            <li><span style='background:#FEF200'></span>50-74%</li>
-                            <li><span style='background:#82e0c3'></span>75-99%</li>
-                            <li><span style='background:#4EAB07'></span>100%</li>
-                        </ul>
+                    <div class='my-legend'>
+                        <!--div class='legend-title'>Legend:</div-->
+                        <div class='legend-scale'>
+                            <ul class='legend-labels' style='text-align:center'>
+                                <li>Legend: </li>
+                                <li><span style='background:rgb(255,0,0)'></span>0%</li>
+                                <li><span style='background:#FC8400'></span>1-24%</li>
+                                <li><span style='background:#FDC300'></span>25-49%</li>
+                                <li><span style='background:#FEF200'></span>50-74%</li>
+                                <li><span style='background:#82e0c3'></span>75-99%</li>
+                                <li><span style='background:#4EAB07'></span>100%</li>
+                            </ul>
+                        </div>
+                        <!--<div class='legend-source'>Source: <a href="#link to source">Name of source</a></div>-->
                     </div>
-                    <!--<div class='legend-source'>Source: <a href="#link to source">Name of source</a></div>-->
                 </div>
             </div>
-        </div>
-
+    </div>
         <div class="row" style="margin-left:-30px;">
             <div id="sidebar" class="col-xs-4 default-text">
                 <div class="entry-default-text" style="padding-top:9px; display:block;">
@@ -78,57 +78,56 @@
         <div class="row">
             <div id="content"></div>
         </div>
-    </div>
-</div><!-- /container -->
-<!--<script type="text/javascript" src="js/vendor/tabletop.min.js"></script>-->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
+    </div><!-- /container -->
+    <!--<script type="text/javascript" src="js/vendor/tabletop.min.js"></script>-->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
 
-<script type="text/javascript" src="./maps/maine-state-senate-dm.js"></script>
+    <script type="text/javascript" src="./maps/maine-state-senate-dm.js"></script>
 
-<script src="js/app-maine-senate-2019.js"></script>
-<script id="senate-template" type="text/x-handlebars-template">
-    <div class="entry">
-        <div style='margin-top:-5px; margin-bottom:18px; background-color: {{scoreColor}}; height:20px;'></div>
-        <div class="body">
-            <strong>District {{{current_district}}}</strong><br>
-            {{{name}}} ({{{party_affiliation}}})<br>
-            {{#if phone}}{{{phone}}}<br>{{/if}}
-            2019 Score: <strong>{{{score_2019}}}%</strong><br>
-            {{{notes}}}<br>
-            {{#if district_email}}<a target='_blank' href="mailto:{{{email}}}"><i
-                class="icon-envelope icon-2x custom-icon"></i></a>{{/if}}
-            <a
-                    href="http://twitter.com/intent/tweet?text=NEW%21%20%40MDLCV%20interactive%20%23MDLCVScore%20map%2E%20How%20did%20your%20legislator%20do%3F%20%23MDGA18&amp;url=http://scorecard.mdlcv.org"
-                    target="_blank"><i
-                    class="icon-twitter icon-2x custom-icon"></i></a>
-            <a href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fscorecard.mdlcv.org&amp;t=Maryland%20League%20of%20Conservation%20Voters%20Scorecard"
-               target="_blank"><i
-                    class="icon-facebook icon-2x custom-icon"></i></a>
-        </div>
-    </div>
-</script>
-
-    <script id="senate-template-infobox" type="text/x-handlebars-template">
-        <div class="entry parent" style="padding:12px; background-color: {{scoreColor}};">
-            <div class="body child">
-                <button type='button' id='close' class='close'>&times;</button>
-                <br>
-
-                <strong> {{{name}}} ({{{party_affiliation}}})</strong><br>
-                District {{{current_district}}}<br>
+    <script src="js/app-maine-senate-2019.js"></script>
+    <script id="senate-template" type="text/x-handlebars-template">
+        <div class="entry">
+            <div style='margin-top:-5px; margin-bottom:18px; background-color: {{scoreColor}}; height:20px;'></div>
+            <div class="body">
+                <strong>District {{{current_district}}}</strong><br>
+                {{{name}}} ({{{party_affiliation}}})<br>
                 {{#if phone}}{{{phone}}}<br>{{/if}}
                 2019 Score: <strong>{{{score_2019}}}%</strong><br>
                 {{{notes}}}<br>
                 {{#if district_email}}<a target='_blank' href="mailto:{{{email}}}"><i
                     class="icon-envelope icon-2x custom-icon"></i></a>{{/if}}
-
-                <a href="http://twitter.com/intent/tweet?text=NEW%21%20%40MDLCV%20interactive%20%23MDLCVScore%20map%2E%20How%20did%20your%20legislator%20do%3F%20%23MDGA18&amp;url=http://scorecard.mdlcv.org"
-                   target="_blank"><i
+                <a
+                        href="http://twitter.com/intent/tweet?text=NEW%21%20%40MDLCV%20interactive%20%23MDLCVScore%20map%2E%20How%20did%20your%20legislator%20do%3F%20%23MDGA18&amp;url=http://scorecard.mdlcv.org"
+                        target="_blank"><i
                         class="icon-twitter icon-2x custom-icon"></i></a>
                 <a href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fscorecard.mdlcv.org&amp;t=Maryland%20League%20of%20Conservation%20Voters%20Scorecard"
-                   target="_blank"><i class="icon-facebook icon-2x custom-icon"></i></a>
+                   target="_blank"><i
+                        class="icon-facebook icon-2x custom-icon"></i></a>
             </div>
         </div>
-    </script>
+</script>
+
+        <script id="senate-template-infobox" type="text/x-handlebars-template">
+            <div class="entry parent" style="padding:12px; background-color: {{scoreColor}};">
+                <div class="body child">
+                    <button type='button' id='close' class='close'>&times;</button>
+                    <br>
+
+                    <strong> {{{name}}} ({{{party_affiliation}}})</strong><br>
+                    District {{{current_district}}}<br>
+                    {{#if phone}}{{{phone}}}<br>{{/if}}
+                    2019 Score: <strong>{{{score_2019}}}%</strong><br>
+                    {{{notes}}}<br>
+                    {{#if district_email}}<a target='_blank' href="mailto:{{{email}}}"><i
+                        class="icon-envelope icon-2x custom-icon"></i></a>{{/if}}
+
+                    <a href="http://twitter.com/intent/tweet?text=NEW%21%20%40MDLCV%20interactive%20%23MDLCVScore%20map%2E%20How%20did%20your%20legislator%20do%3F%20%23MDGA18&amp;url=http://scorecard.mdlcv.org"
+                       target="_blank"><i
+                            class="icon-twitter icon-2x custom-icon"></i></a>
+                    <a href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fscorecard.mdlcv.org&amp;t=Maryland%20League%20of%20Conservation%20Voters%20Scorecard"
+                       target="_blank"><i class="icon-facebook icon-2x custom-icon"></i></a>
+                </div>
+            </div>
+        </script>
 </body>
 < /html>
