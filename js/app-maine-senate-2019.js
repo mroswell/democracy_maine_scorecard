@@ -140,7 +140,7 @@ var geojson;
 function resetHighlight(e) {
     var layer = e.target;
     senateLayer.resetStyle(e.target);
-    layer.resetStyle(e.target);
+    // layer.resetStyle(e.target);
     info.update();
 }
 
