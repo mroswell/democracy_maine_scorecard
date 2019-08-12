@@ -13,8 +13,11 @@
     <link rel="stylesheet" href="css/style.css">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" crossorigin=""/>
-    <link type="text/css" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"
-          media="all">
+    <!--    <link type="text/css" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"-->
+    <!--          media="all">-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
 
     <script src="./js/vendor/leaflet.js" crossorigin=""></script>
@@ -22,25 +25,37 @@
     <script type="text/javascript" src="js/vendor/handlebars.js"></script>
 </head>
 <body>
-<div class="wrapper">
+<div class="feature-wrapper pt-5 pb-5 mt-5 mt-lg-0">
     <!-- wides go inside wrapper but outside outer and inner -->
     <div class="container">
-        <div class="row col-xs-12">
-            <h2>Senate Scorecard Map
-                <span class="pull-right">
+        <div class="row">
+            <div class="col-9">
+                <h2>Senate Scorecard Map
+<!--                    </br> <small  class="text-muted">Find out your legislators' scores.</small>-->
+                </h2>
+            </div>
+            <div class="col-3 ">
+                <p class="text-right">
                     <a target='_new' href="http://twitter.com/intent/tweet?text=sample+encoded+tweet+here">
                         <i class="icon-twitter icon custom-icon"></i></a>&nbsp;&nbsp;
-                    <a target='_new' href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2FDemocracyMaine.org&t=Democracye+Maine+"><i class="icon-facebook  custom-icon"></i></a>
-      </span>
-                <br><small>Find out your legislators' scores.</small></h2>
+                    <a target='_new'
+                       href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2FDemocracyMaine.org&t=Democracye+Maine+"><i
+                            class="icon-facebook  custom-icon"></i></a>
+                </p>
+            </div>
         </div>
-        <div class="row">
-                <div class="col-xs-4 default-text">&nbsp;</div>
-                <div class="col-xs-8">
-                <div class='my-legend'>
+        <div class="row mt-2">
+            <div class="col-4 default-text">
+                <ul class="nav nav-pills flex-column flex-sm-row">
+                    <a style="background-color: #0c0b3e" class="flex-sm-fill text-sm-center nav-link active" href="./index-2019.html">Senate</a>
+                    <a style="color:#0c0b3e" class="flex-sm-fill text-sm-center nav-link"  href="./index-house-2019.html">House</a>
+                </ul>
+            </div>
+            <div class="col-8">
+                <div class='my-legend float-right'>
                     <!--div class='legend-title'>Legend:</div-->
                     <div class='legend-scale'>
-                        <ul class='legend-labels' style='text-align:center'>
+                        <ul class='legend-labels' class="text-right">
                             <li>Legend:</li>
                             <li><span style='background:rgb(255,0,0)'></span>0%</li>
                             <li><span style='background:#FC8400'></span>1-24%</li>
@@ -55,32 +70,32 @@
             </div>
         </div>
 
-        <div class="row" style="margin-left:-30px;">
-            <div id="sidebar" class="col-xs-4 default-text">
-                <div class="entry-default-text" style="padding-top:9px; display:block;">
-                    <div id=default-text class="body">
-                        <!--<p id='close2' class='close'>&times;</p><br>-->
-                        <h5 style="text-align: center">Welcome</h5>
-                        <ul>
-                            <li><strong>Mouseover</strong> a district for more detail</li>
-                            <li><strong>Click a district</strong> to freeze the info panel</li>
-                            <li><strong>Zoom</strong> into selected district to see street detail</li>
-                            <li><strong>Click the 'x'</strong> to dismiss the info panel and re-enable mouseover
-                                function.
-                            </li>
-                        </ul>
-                        <button id="clickme">Click</button>
-                    </div>
-                </div>
-
-            </div>
-            <div id="map" class="col-xs-8">
-            </div>
-        </div>
         <div class="row">
-            <div id="allDistricts"></div>
+        <div id="sidebar" class="col-4 default-text">
+            <div class="entry-default-text" style="padding-top:9px; display:block;">
+                <div id=default-text class="body">
+                    <!--<p id='close2' class='close'>&times;</p><br>-->
+                    <h5 style="text-align: center">Welcome</h5>
+                    <ul>
+                        <li><strong>Mouseover</strong> a district for more detail</li>
+                        <li><strong>Click a district</strong> to freeze the info panel</li>
+                        <li><strong>Zoom</strong> into selected district to see street detail</li>
+                        <li><strong>Click the 'x'</strong> to dismiss the info panel and re-enable mouseover
+                            function.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div id="map" class="col-8">
         </div>
     </div>
+    <div class="row">
+        <div id="allDistricts"></div>
+    </div>
+</div>
+
 </div><!-- /container -->
 <!--<script type="text/javascript" src="js/vendor/tabletop.min.js"></script>-->
 <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
@@ -110,27 +125,27 @@
     </div>
 </script>
 
-    <script id="senate-template-infobox" type="text/x-handlebars-template">
-        <div class="entry parent" style="padding:12px; background-color: {{scoreColor}};">
-            <div class="body child">
-                <button type='button' id='close' class='close'>&times;</button>
-                <br>
+<script id="senate-template-infobox" type="text/x-handlebars-template">
+    <div class="entry parent" style="padding:12px; background-color: {{scoreColor}}; z-index:100;">
+        <div class="body child">
+            <button type='button' id='close' class='close'>&times;</button>
+            <br><br>
 
-                <strong> {{{name}}} ({{{party_affiliation}}})</strong><br>
-                District {{{current_district}}}<br>
-                {{#if phone}}{{{phone}}}<br>{{/if}}
-                2019 Score: <strong>{{{score_2019}}}%</strong><br>
-                {{{notes}}}<br>
-                {{#if district_email}}<a target='_blank' href="mailto:{{{email}}}"><i
-                    class="icon-envelope icon-2x custom-icon"></i></a>{{/if}}
+            <strong> {{{name}}} ({{{party_affiliation}}})</strong><br>
+            District {{{current_district}}}<br>
+            {{#if phone}}{{{phone}}}<br>{{/if}}
+            2019 Score: <strong>{{{score_2019}}}%</strong><br>
+            {{{notes}}}<br>
+            {{#if district_email}}<a target='_blank' href="mailto:{{{email}}}"><i
+                class="icon-envelope icon-2x custom-icon"></i></a>{{/if}}
 
-                <a href="http://twitter.com/intent/tweet?text=NEW%21%20%40MDLCV%20interactive%20%23MDLCVScore%20map%2E%20How%20did%20your%20legislator%20do%3F%20%23MDGA18&amp;url=http://scorecard.mdlcv.org"
-                   target="_blank"><i
-                        class="icon-twitter icon-2x custom-icon"></i></a>
-                <a href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fscorecard.mdlcv.org&amp;t=Maryland%20League%20of%20Conservation%20Voters%20Scorecard"
-                   target="_blank"><i class="icon-facebook icon-2x custom-icon"></i></a>
-            </div>
+            <a href="http://twitter.com/intent/tweet?text=NEW%21%20%40MDLCV%20interactive%20%23MDLCVScore%20map%2E%20How%20did%20your%20legislator%20do%3F%20%23MDGA18&amp;url=http://scorecard.mdlcv.org"
+               target="_blank"><i
+                    class="icon-twitter icon-2x custom-icon"></i></a>
+            <a href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fscorecard.mdlcv.org&amp;t=Maryland%20League%20of%20Conservation%20Voters%20Scorecard"
+               target="_blank"><i class="icon-facebook icon-2x custom-icon"></i></a>
         </div>
-    </script>
+    </div>
+</script>
 </body>
 </html>

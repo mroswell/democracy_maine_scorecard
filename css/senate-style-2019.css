@@ -4,8 +4,9 @@ html, body {
 }
 
 #map {
-    width: 640px;
-    height: 700px;
+    /*width: 640px;*/
+    height: 660px;
+    z-index:1;
 }
 
 .info {
@@ -34,4 +35,7 @@ html, body {
     float: left;
     margin-right: 8px;
     opacity: 0.7;
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    border-radius: 80px;
 }

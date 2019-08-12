@@ -8,7 +8,7 @@ var $sidebar = $('#sidebar');
 var map = L.map('map', {
     scrollWheelZoom: false,
     zoomSnap: 0.25
-}).setView([45.3, -69],7.25);
+}).setView([45.3, -69],7);
 // var map = L.map('map', {scrollWheelZoom: true}).setView([45.3, -69],7);
 
 // control that shows state info on hover
@@ -142,8 +142,6 @@ function highlightFeature(e) {
         info.update(layer.feature.properties);
     }
 }
-
-// var geojson;
 
 function resetHighlight(e) {
     var layer = e.target;
