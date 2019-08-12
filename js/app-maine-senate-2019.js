@@ -2,6 +2,9 @@ var public_spreadsheet_url = '1nQt3d78MuITuaIzIQOep17c3ATm3uazA_S1BfocUQgU';
 var senateLayer;
 var MESenateDistricts = {};
 var app = {};
+var freeze=0;
+var $sidebar = $('#sidebar');
+
 var map = L.map('map', {
     scrollWheelZoom: false,
     zoomSnap: 0.25
@@ -60,7 +63,10 @@ window.addEventListener('DOMContentLoaded', init);
 var dist;
 
 $(document).ready(function () {
-
+    var allDistrictsSource = $("#senate-template-bottom").html();
+    app.template = Handlebars.compile(allDistrictsSource);
+    var sourcebox = $("#senate-template-infobox").html();
+    app.infoboxTemplate = Handlebars.compile(sourcebox);
     Tabletop.init( { key: public_spreadsheet_url,
         callback: showInfo,
         simpleSheet: true } )
@@ -69,26 +75,22 @@ $(document).ready(function () {
 });
 function showInfo(sheet_data, tabletop) {
     var scoreColor;
-    var source = $("#senate-template").html();
-    var template = Handlebars.compile(source);
-    var sourcebox = $("#senate-template-infobox").html();
-    app.infoboxTemplate = Handlebars.compile(sourcebox);
 
     $.each(tabletop.sheets("Maine State Senate").all(), function(i, member) {
         scoreColor = getColor(member.score_2019);
         member['scoreColor'] = scoreColor;
 
         MESenateDistricts[member.current_district] = member;
-         console.log('member', member);
-        MESenateDistricts[member.current_district].partyAbbrev = MESenateDistricts[member.current_district].current_party.charAt(0).toUpperCase();
-        var html = template(member);
-        $("#content").append(html);
+         // console.log('member', member);
+        // MESenateDistricts[member.current_district].partyAbbrev = MESenateDistricts[member.current_district].current_party.charAt(0).toUpperCase();
+        var html = app.template(member);
+        $("#allDistricts").append(html);
 
     });
     loadGeo();
 
 }
-console.log('MESenateDistricts', MESenateDistricts);
+// console.log('MESenateDistricts', MESenateDistricts);
 function loadGeo(district) {
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
         maxZoom: 18,
@@ -104,7 +106,6 @@ function loadGeo(district) {
     });
 
     senateLayer.addTo(map);
-
 }
 
 // get color depending on score value
@@ -120,22 +121,29 @@ function getColor(score) {
 
 function highlightFeature(e) {
     var layer = e.target;
-
+    var districtNumber = layer.feature.properties.NAMELSAD.split(' ').pop();
+    var memberDetail = MESenateDistricts[districtNumber];
+    if(!memberDetail){
+        console.log("No memberDetail");
+        return;
+    }
     layer.setStyle({
         weight: 5,
         color: '#666',
         dashArray: '',
         fillOpacity: 0.7
     });
-
-    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-        layer.bringToFront();
+    if (!freeze) {
+        html = app.infoboxTemplate(memberDetail);
+        $sidebar.html(html);
+        if (!L.Browser.ie && !L.Browser.opera) {
+            layer.bringToFront();
+        }
+        info.update(layer.feature.properties);
     }
-
-    info.update(layer.feature.properties);
 }
 
-var geojson;
+// var geojson;
 
 function resetHighlight(e) {
     var layer = e.target;
@@ -144,6 +152,21 @@ function resetHighlight(e) {
     info.update();
 }
 
+function mapMemberDetailClick(e) {
+    freeze = 1;
+    var boundary = e.target;
+    // var memberNumber = Number(boundary.feature.properties.SLDUST);
+    var districtNumber = boundary.feature.properties.NAMELSAD.split(' ').pop();
+
+    // console.log("mapMemberDetailClick: ", memberNumber);
+    var member = memberDetailFunction(districtNumber);
+}
+
+function memberDetailFunction(memberNumber) {
+    var districtDetail = MESenateDistricts[memberNumber];
+    var html = app.infoboxTemplate(districtDetail);
+    $('#sidebar').html(html);
+}
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
 }
@@ -152,7 +175,7 @@ function onEachFeature(feature, layer) {
     layer.on({
         mouseover: highlightFeature,
         mouseout: resetHighlight,
-        click: zoomToFeature
+        click: mapMemberDetailClick
     });
 }
 
@@ -177,3 +200,14 @@ map.attributionControl.addAttribution('District Boundaries &copy; <a href="http:
 // };
 //
 // legend.addTo(map);
+
+$(document).on("click",".close",function(event) {
+    event.preventDefault();
+    clearInfobox();
+    freeze=0;
+});
+
+function clearInfobox() {
+    $sidebar.html(' ');
+    // styleDistrict(frozenDist,1,0.3,'#666',1); //TODO
+}
