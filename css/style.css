@@ -2,7 +2,7 @@
     float: left;
     width: 310px;
     border: solid black 1px;
-    height: 550px;
+    height: 590px;
     padding: 18px;
     margin: 8px;
     background: white;
@@ -137,6 +137,9 @@ h2 {
 .fa-thumbs-up {
     color: #4EAB07;
 }
+.fa-minus-circle {
+    color: #b0b0b0;
+}
 
 .icon-twitter, .fa-twitter-square {
     color: #00ACED;
@@ -152,7 +155,7 @@ h2 {
 }
 
 .icon-2x {
-    font-size: 1.7em;
+    font-size: 1.6em;
 }
 
 p.close {
@@ -238,7 +241,7 @@ p.close {
     border: solid #E9E9E9 1px;
     background-color: #ffffff;
     font-family: 'Nunito Sans', sans-serif;
-    font-size: larger;
+    font-size: 15.5;
 }
 
 .child p {
@@ -246,13 +249,20 @@ p.close {
     font-family: 'Roboto Condensed', sans-serif;
 
 }
-.child-header {
+.child-header, .score {
     font-family: 'Roboto', sans-serif;
     font-weight: 900;
-    background-color: black;
+    background-color: #0c0b3e;
     color: white;
-    margin-left: 3px;
+    margin-top: 7px;
     display: block;
+    border-radius: 80px;
+    text-align: center;
+    padding: 8px 4px;
+}
+.score {
+    display: inline-block;
+    width:41px;
 }
 span > i {
     padding-right: 10px;
@@ -262,5 +272,5 @@ span > i {
     display: inline-block;
     vertical-align: sub;
     font-weight: 900;
-    color: red;
+    color: red; /* #C40015 */
 }

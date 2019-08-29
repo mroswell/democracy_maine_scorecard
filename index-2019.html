@@ -135,28 +135,33 @@
         <div class="infobox child">
             <button type='button' id='close' class='close'>&times;</button>
             <br>
-            <p><strong> {{{name}}} ({{{party_affiliation}}})</strong></p>
-            <p>District {{{current_district}}}</p>
-            {{#if district_voice}}<p>{{{district_voice}}}</p>{{/if}}
-            {{#if district_email}}<p style="font-family: 'Archivo Narrow', sans-serif;">{{{district_email}}}</p>{{/if}}
+            <p class="child-header"> {{{name}}} ({{{party_affiliation}}})</p>
+            <p style="text-align:center">District {{{current_district}}}</p>
+            {{#if district_voice}}<p style="text-align:center">{{{district_voice}}}</p>{{/if}}
+            {{#if district_email}}<p style="font-family: 'Archivo Narrow', sans-serif;text-align:center">{{{district_email}}}</p>{{/if}}
+            <p style="font-family: 'Archivo Narrow', sans-serif;text-align:center">Election Funding Method: {{#funding bill5_score "CE"}}Clean Elections Program
+                {{else}}Private Funding
+                {{/funding}}</p>
+            <p>1. Automatic Voter Registration: {{#if_eq bill1_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
+                {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
+                {{/if_eq}}</p>
+            <p>2. National Popular Vote: {{#if_eq bill2_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
+                {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
+                {{/if_eq}}</p>
+            <p>3. Presidential Primary: {{#if_eq bill3_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
+                {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
+                {{/if_eq}}</p>
+            <p>4. Lobbyist Contribution Ban: {{#if_eq bill4_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
+                {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
+                {{/if_eq}}</p>
+            <p>5. Ranked Choice Voting: {{#if_eq bill5_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
+                {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
+                {{/if_eq}}</p>
+            <p>6. Early Voting: {{#if_eq bill6_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
+                {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
+                {{/if_eq}}</p>
 
-            <p>National Popular Vote: {{#if_eq bill1_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
-            {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
-            {{/if_eq}}</p>
-            <p>Lobbyist Contribution Ban: {{#if_eq bill2_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
-            {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
-            {{/if_eq}}</p>
-            <p>Automatic Voter Registration: {{#if_eq bill3_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
-                {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
-                {{/if_eq}}</p>
-            <p>Ranked Choice Voting: {{#if_eq bill4_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
-                {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
-                {{/if_eq}}</p>
-            <p>ERA: {{#if_eq bill5_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
-                {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
-                {{/if_eq}}</p>
-            <br>
-            <p>2019 Score: <strong>{{{score_2019}}}%</strong></p>
+            <p>2019 Score: <span class="score">{{{score_2019}}}%</span></p>
 <br>
             <a href="http://twitter.com/intent/tweet?text=NEW%21%20%40MDLCV%20interactive%20%23MDLCVScore%20map%2E%20How%20did%20your%20legislator%20do%3F%20%23MDGA18&amp;url=http://democracymaine.org"
                     target="_blank"><i class="fab fa-twitter-square fa-2x"></i></a>
@@ -167,7 +172,17 @@
 </script>
 <script>
     Handlebars.registerHelper('if_eq', function(a, b, opts) {
-        if (a == b) {
+        if (a === b) {
+            return opts.fn(this);
+        } else if (a==="nonvote") {
+            return '<i class="fas fa-minus-circle fa-2x"></i>'
+        } else {
+            return opts.inverse(this);
+        }
+    });
+
+    Handlebars.registerHelper('funding', function(a, b, opts) {
+        if (a === b) {
             return opts.fn(this);
         } else {
             return opts.inverse(this);
