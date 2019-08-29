@@ -139,9 +139,9 @@
             <p style="text-align:center">District {{{current_district}}}</p>
             {{#if district_voice}}<p style="text-align:center">{{{district_voice}}}</p>{{/if}}
             {{#if district_email}}<p style="font-family: 'Archivo Narrow', sans-serif;text-align:center">{{{district_email}}}</p>{{/if}}
-            <p style="font-family: 'Archivo Narrow', sans-serif;text-align:center">Election Funding Method: {{#funding bill5_score "CE"}}Clean Elections Program
+            <p style="font-family: 'Archivo Narrow', sans-serif;text-align:center; font-size:13px">Election Funding Method: {{#if_eq clean_elections "CE"}}Clean Elections Program
                 {{else}}Private Funding
-                {{/funding}}</p>
+                {{/if_eq}}</p>
             <p>1. Automatic Voter Registration: {{#if_eq bill1_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
                 {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
                 {{/if_eq}}</p>
@@ -176,14 +176,6 @@
             return opts.fn(this);
         } else if (a==="nonvote") {
             return '<i class="fas fa-minus-circle fa-2x"></i>'
-        } else {
-            return opts.inverse(this);
-        }
-    });
-
-    Handlebars.registerHelper('funding', function(a, b, opts) {
-        if (a === b) {
-            return opts.fn(this);
         } else {
             return opts.inverse(this);
         }
