@@ -44,8 +44,9 @@
         <div class="row mt-2">
             <div class="col-4 default-text">
                 <ul class="nav nav-pills flex-column flex-sm-row">
-                    <a style="background-color: #0c0b3e" class="flex-fill text-sm-center nav-link active" href="./2019-senate-scorecard-map.html">Senate</a>
-                    <a style="color:#0c0b3e;" class="flex-fill text-sm-center nav-link"  href="./2019-house-scorecard-map.html">House</a>
+                    <a style="background-color:white; color: #0c0b3e" class="flex-fill text-sm-center nav-link active" href="./2019-senate-scorecard-map.html">Senate</a>
+                    <a style="background-color: #0c0b3e; " class="flex-fill text-sm-center nav-link active"  href="./2019-house-scorecard-map.html">House</a>
+
                 </ul>
             </div>
             <div class="col-8">
@@ -54,12 +55,13 @@
                     <div class='legend-scale'>
                         <ul class='legend-labels' class="text-right">
                             <li>Legend:</li>
-                            <li><span style='background:rgb(255,0,0)'></span>0%</li>
-                            <li><span style='background:#FC8400'></span>1-24%</li>
-                            <li><span style='background:#FDC300'></span>25-49%</li>
-                            <li><span style='background:#FEF200'></span>50-74%</li>
-                            <li><span style='background:#82e0c3'></span>75-99%</li>
-                            <li><span style='background:#4EAB07'></span>100%</li>
+                            <li style="width: 70px;"><span style='background:#fefefe; border: 2px solid #b0b0b0; width: 70px;'></span>Not scored</li>
+                            <li style="width: 70px;"><span style='background:rgb(255,0,0); width: 70px;'></span>0%</li>
+                            <li style="width: 70px;"><span style='background:#FC8400; width: 70px;'></span>1-24%</li>
+                            <li style="width: 70px;"><span style='background:#FDC300; width: 70px;'></span>25-49%</li>
+                            <li style="width: 70px;"><span style='background:#FEF200; width: 70px;'></span>50-74%</li>
+                            <li style="width: 70px;"><span style='background:#82e0c3; width: 70px;'></span>75-99%</li>
+                            <li style="width: 70px;"><span style='background:#4EAB07; width: 70px;'></span>100%</li>
                         </ul>
                     </div>
                     <!--<div class='legend-source'>Source: <a href="#link to source">Name of source</a></div>-->
@@ -158,7 +160,10 @@
                 {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
                 {{/if_eq}}</p>
 
-            <p>2019 Score: <span class="score">{{{score_2019}}}%</span></p>
+            <p>{{#if_eq score_2019 "Medical leave"}}<span  style="font-family: 'Archivo Narrow', sans-serif;" >(Not scored: Rep. Devin was on medical leave.)</span>
+                {{else}}2019 Score: <span class="score">{{{score_2019}}}%</span>
+                {{/if_eq}}
+            </p>
 <br>
 
             &nbsp; <a href="http://twitter.com/intent/tweet?text=Are%20your%20legislators%20democracy%20champions?%20Find%20out%20with%20Democracy%20Maine's%202019%20scorecard&amp;url=http://democracymaine.org"
@@ -174,6 +179,8 @@
             return opts.fn(this);
         } else if (a==="nonvote") {
             return '<i class="fas fa-minus-circle fa-2x"></i>'
+        } else if (a==="Medical leave") {
+            return 'this is medical'
         } else {
             return opts.inverse(this);
         }

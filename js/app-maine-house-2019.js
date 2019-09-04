@@ -106,7 +106,9 @@ function showInfo(sheet_data, tabletop) {
     let scoreColor;
 
     $.each(tabletop.sheets("Maine State House").all(), function(i, member) {
+        console.log(member.score_2019)
         scoreColor = getColor(member.score_2019);
+        console.log(scoreColor);
         member['scoreColor'] = scoreColor;
 
         MESenateDistricts[member.current_district] = member;
@@ -138,7 +140,9 @@ function loadGeo() {
 
 // get color depending on score value
 function getColor(score) {
-    return score > 99 ? '#4EAB07' :
+    console.log(score);
+    return score === "Medical leave" ? '#fefefe' :
+        score > 99 ? '#4EAB07' :
         score > 74 ? '#82e0c3' :
             score > 49 ? '#FEF200' :
                 score > 24 ? '#FDC300' :
