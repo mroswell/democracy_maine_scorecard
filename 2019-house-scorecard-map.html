@@ -30,7 +30,7 @@
 <body>
 <div class="feature-wrapper pt-5 pb-5 mt-5 mt-lg-0">
     <!-- wides go inside wrapper but outside outer and inner -->
-    <div class="container">
+    <div class="container" id="top">
         <div class="row">
             <div class="col-9">
                 <h2>House Scorecard Map
@@ -44,9 +44,8 @@
         <div class="row mt-2">
             <div class="col-4 default-text">
                 <ul class="nav nav-pills flex-column flex-sm-row">
-                    <a style="background-color:white; color: #0c0b3e" class="flex-fill text-sm-center nav-link active" href="./2019-senate-scorecard-map.html">Senate</a>
-                    <a style="background-color: #0c0b3e; " class="flex-fill text-sm-center nav-link active"  href="./2019-house-scorecard-map.html">House</a>
-
+                    <a style="background-color: #0c0b3e" class="flex-fill text-sm-center nav-link active" href="./2019-senate-scorecard-map.html">Senate</a>
+                    <a style="color:#0c0b3e;" class="flex-fill text-sm-center nav-link"  href="./2019-house-scorecard-map.html">House</a>
                 </ul>
             </div>
             <div class="col-8">
@@ -118,9 +117,9 @@
 <script src="js/app-maine-house-2019.js"></script>
 <script id="senate-template-bottom" type="text/x-handlebars-template">
     {{#each priority_votes}}
-    <div class="entry priority_vote">
+    <div class="entry priority_vote" id="bookmark_{{@index}}">
         <div class="body">
-            <h5> {{vote_title}}</h5>
+           <h5><a href="#top">{{vote_title}}</a></h5>
             <p>{{{vote_description}}}</p>
             {{result}}
         </div>
@@ -140,22 +139,22 @@
             <p style="font-family: 'Archivo Narrow', sans-serif;text-align:center; font-size:13px">Election Funding Method: {{#if_eq clean_elections "CE"}}Clean Elections Program
                 {{else}}Private Funding
                 {{/if_eq}}</p>
-            <p>1. Automatic Voter Registration: {{#if_eq bill1_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
+            <p><a href="#bookmark_0">1. Automatic Voter Registration</a>: {{#if_eq bill1_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
+                {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
+            {{/if_eq}}</p>
+            <p><a href="#bookmark_1">2. National Popular Vote</a>: {{#if_eq bill2_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
                 {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
                 {{/if_eq}}</p>
-            <p>2. National Popular Vote: {{#if_eq bill2_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
+            <p><a href="#bookmark_2">3. Presidential Primary</a>: {{#if_eq bill3_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
                 {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
                 {{/if_eq}}</p>
-            <p>3. Presidential Primary: {{#if_eq bill3_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
+            <p><a href="#bookmark_3">4. Lobbyist Contribution Ban</a>: {{#if_eq bill4_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
                 {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
                 {{/if_eq}}</p>
-            <p>4. Lobbyist Contribution Ban: {{#if_eq bill4_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
+            <p><a href="#bookmark_4">5. Ranked Choice Voting</a>: {{#if_eq bill5_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
                 {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
                 {{/if_eq}}</p>
-            <p>5. Ranked Choice Voting: {{#if_eq bill5_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
-                {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
-                {{/if_eq}}</p>
-            <p>6. Early Voting: {{#if_eq bill6_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
+            <p><a href="#bookmark_5">6. Early Voting</a>: {{#if_eq bill6_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
                 {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
                 {{/if_eq}}</p>
 

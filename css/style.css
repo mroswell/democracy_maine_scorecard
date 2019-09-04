@@ -1,3 +1,10 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    color: #0B8973;
+}
 .entry {
     float: left;
     width: 310px;
@@ -91,7 +98,7 @@ li {
 a:link, a:visited, a:hover, a:active {
     text-decoration: none;
     font-family: arial, verdana, helvetica, sans-serif;
-    color: #00c;
+    color: #0c0b3e;
 }
 
 .container {
@@ -130,9 +137,9 @@ p.info-title {
     font-size: 120%;
 }
 
-h2 {
+h2, h4, h5 {
     font-size: 2em;
-    color: black;
+    color: #0c0b3e;
     /*text-transform: uppercase;*/
 }
 
@@ -267,6 +274,10 @@ p.close {
     font-family: 'Roboto Condensed', sans-serif;
 
 }
+
+.child a {
+    color:#0c0b3e;
+}
 .child-header, .score {
     font-family: 'Roboto', sans-serif;
     font-weight: 900;
@@ -292,3 +303,5 @@ span > i {
     font-weight: 900;
     color: red; /* #C40015 */
 }
+
+

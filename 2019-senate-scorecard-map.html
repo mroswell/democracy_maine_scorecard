@@ -11,14 +11,10 @@
     <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico"/>
     <link rel="stylesheet" href="css/senate-style-2019.css">
     <link rel="stylesheet" href="css/style.css">
-
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" crossorigin=""/>
-    <!--    <link type="text/css" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"-->
-    <!--          media="all">-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-<!--    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">-->
 <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" integrity="sha256-PF6MatZtiJ8/c9O9HQ8uSUXr++R9KBYu4gbNG5511WE=" crossorigin="anonymous" />    -->
     <script src="./js/vendor/leaflet.js" crossorigin=""></script>
     <script src="https://kit.fontawesome.com/349ec13eb2.js"></script>
@@ -29,7 +25,7 @@
 <body>
 <div class="feature-wrapper pt-5 pb-5 mt-5 mt-lg-0">
     <!-- wides go inside wrapper but outside outer and inner -->
-    <div class="container">
+    <div class="container" id="top">
         <div class="row">
             <div class="col-9">
                 <h2>Senate Scorecard Map
@@ -116,9 +112,9 @@
 <script src="js/app-maine-senate-2019.js"></script>
 <script id="senate-template-bottom" type="text/x-handlebars-template">
     {{#each priority_votes}}
-    <div class="entry priority_vote">
+    <div class="entry priority_vote" id="bookmark_{{@index}}">
         <div class="body">
-            <h5> {{vote_title}}</h5>
+           <h5><a href="#top">{{vote_title}}</a></h5>
             <p>{{{vote_description}}}</p>
             {{result}}
         </div>
@@ -128,7 +124,7 @@
 </script>
 
 <script id="senate-template-infobox" type="text/x-handlebars-template">
-    <div class="entry parent" style="padding:12px; background-color: {{scoreColor}}; z-index:100;">
+    <div class="entry parent" style="padding:12px; background-color: {{scoreColor}}; z-index:100;" >
         <div class="infobox child">
             <button type='button' id='close' class='close'>&times;</button>
             <br>
@@ -138,22 +134,22 @@
             <p style="font-family: 'Archivo Narrow', sans-serif;text-align:center; font-size:13px">Election Funding Method: {{#if_eq clean_elections "CE"}}Clean Elections Program
                 {{else}}Private Funding
                 {{/if_eq}}</p>
-            <p>1. Automatic Voter Registration: {{#if_eq bill1_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
+            <p><a href="#bookmark_0">1. Automatic Voter Registration</a>: {{#if_eq bill1_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
                 {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
                 {{/if_eq}}</p>
-            <p>2. National Popular Vote: {{#if_eq bill2_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
+            <p><a href="#bookmark_1">2. National Popular Vote</a>: {{#if_eq bill2_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
                 {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
                 {{/if_eq}}</p>
-            <p>3. Presidential Primary: {{#if_eq bill3_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
+            <p><a href="#bookmark_2">3. Presidential Primary</a>: {{#if_eq bill3_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
                 {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
                 {{/if_eq}}</p>
-            <p>4. Lobbyist Contribution Ban: {{#if_eq bill4_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
+            <p><a href="#bookmark_3">4. Lobbyist Contribution Ban</a>: {{#if_eq bill4_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
                 {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
                 {{/if_eq}}</p>
-            <p>5. Ranked Choice Voting: {{#if_eq bill5_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
+            <p><a href="#bookmark_4">5. Ranked Choice Voting</a>: {{#if_eq bill5_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
                 {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
                 {{/if_eq}}</p>
-            <p>6. Early Voting: {{#if_eq bill6_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
+            <p><a href="#bookmark_5">6. Early Voting</a>: {{#if_eq bill6_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
                 {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
                 {{/if_eq}}</p>
 
