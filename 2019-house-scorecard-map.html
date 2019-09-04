@@ -69,31 +69,8 @@
             </div>
         </div>
 
-        <div class="row">
+              <div class="row">
         <div id="sidebar" class="col-4 default-text">
-            <div class="entry-default-text" style="padding-top:14px; display:block;">
-                <div id=default-text class="body">
-                    <!--<p id='close2' class='close'>&times;</p><br>-->
-                    <h4 style="text-align: center">Welcome</h4>
-                    <ul>
-                        <li><strong>Mouseover</strong> a district for more detail</li>
-                        <li><strong>Click a district</strong> to freeze the info panel</li>
-                        <li><strong>Zoom</strong> into selected district to see street detail</li>
-                        <li><strong>Click the 'x'</strong> to dismiss the info panel and re-enable mouseover
-                            function.
-                        </li>
-                    </ul>
-                    <p class="text-right" style="font-family: 'Archivo Narrow', sans-serif;">
-                        Download the <a style="background-color:white; color: #0c0b3e; padding:0;" href="#"><i class="fas fa-file-pdf fa-2x" aria-hidden="true"></i> </a> PDF
-                    </p>
-                    <p style="margin-top:-46px">&nbsp; <a target='_new' href="http://twitter.com/intent/tweet?text=sample+encoded+tweet+here">
-                        <i class="fab fa-twitter-square fa-2x"></i></a>&nbsp;&nbsp;
-                        <a target='_new'
-                           href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2FDemocracyMaine.org&t=Democracye+Maine+">
-                            <i class="fab fa-facebook-square fa-2x"></i></a>&nbsp;</p>
-                </div>
-            </div>
-
         </div>
         <div id="map" class="col-8">
         </div>
@@ -103,7 +80,7 @@
         <div id="priorityVotes"></div>
         <div class="about_us">
             <h4>About Us</h4>
-            <p>Democracy Maine is a new partnership between two nonpartisan organizations: the League of Women of Women Voters of Maine, and Maine Citizens for Clean Elections. We lead Maine in advocating for voter rights, campaign finance reform, modern and secure elections, government ethics, and voter education and engagement.</p>
+            <p>Democracy Maine is a new partnership between two nonpartisan organizations: the League of Women Voters of Maine, and Maine Citizens for Clean Elections. We lead Maine in advocating for voter rights, campaign finance reform, modern and secure elections, government ethics, and voter education and engagement.</p>
             <p>In the 2019 legislative session, we supported six priority bills that would improve Maine’s democracy. We encourage you to contact your legislators about their votes! Thank them, express your disappointment, or both. A green thumbs up indicates a vote that supported our position. A red thumbs down indicates a vote against.</p>
             <p>To get involved with Democracy Maine, contact us at 207-831-6223 or email info@democracymaine.org. The information on this scorecard does not constitute endorsement of any individual legislator. ©2019 Democracy Maine.</p>
         </div>
@@ -117,6 +94,32 @@
 <script type="text/javascript" src="./maps/maine-state-house.js"></script>
 
 <script src="js/app-maine-house-2019.js"></script>
+
+<script id="welcome-map-help" type="text/x-handlebars-template">
+    <div class="entry-default-text" style="padding-top:14px; display:block;">
+        <div id=default-text class="body">
+            <!--<p id='close2' class='close'>&times;</p><br>-->
+            <h4 style="text-align: center">Welcome</h4>
+            <ul>
+                <li><strong>Mouseover</strong> a district for details</li>
+                <li><strong>Click a district</strong> to freeze the info panel</li>
+                <li><strong>Click a bill name</strong> to scroll to description.</li>
+                <li><strong>Zoom</strong> into selected district to see street detail</li>
+                <li><strong>Click the 'x'</strong> to dismiss the info panel and re-enable mouseover
+                    function.
+                </li>
+            </ul>
+            <p class="text-right" style="font-family: 'Archivo Narrow', sans-serif;">
+                Download the <a style="background-color:white; color: #0c0b3e; padding:0;" href="#"><i class="fas fa-file-pdf fa-2x" aria-hidden="true"></i> </a> PDF
+            </p>
+            <p style="margin-top:-46px">&nbsp; <a target='_new' href="http://twitter.com/intent/tweet?text=sample+encoded+tweet+here">
+                <i class="fab fa-twitter-square fa-2x"></i></a>&nbsp;&nbsp;
+                <a target='_new'
+                   href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2FDemocracyMaine.org&t=Democracye+Maine+">
+                    <i class="fab fa-facebook-square fa-2x"></i></a>&nbsp;</p>
+        </div>
+    </div>
+</script>
 <script id="senate-template-bottom" type="text/x-handlebars-template">
     {{#each priority_votes}}
     <div class="entry priority_vote" id="bookmark_{{@index}}">

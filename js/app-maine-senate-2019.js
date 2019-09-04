@@ -93,15 +93,16 @@ $(document).ready(function () {
     app.infoboxTemplate = Handlebars.compile(sourcebox);
 
     let html = app.template(vote_context);
-    console.log("app.template",app.template);
-    console.log("html", html);
+
+    let map_help = $("#welcome-map-help").html();
+    app.welcome = Handlebars.compile(map_help);
+    $sidebar.append(app.welcome)
+
     $("#priorityVotes").append(html);
 
     Tabletop.init( { key: public_spreadsheet_url,
         callback: showInfo,
         simpleSheet: true } )
-// }
-    // showInfo(data);
 });
 function showInfo(sheet_data, tabletop) {
     let scoreColor;
@@ -109,12 +110,7 @@ function showInfo(sheet_data, tabletop) {
     $.each(tabletop.sheets("Maine State Senate").all(), function(i, member) {
         scoreColor = getColor(member.score_2019);
         member['scoreColor'] = scoreColor;
-
         MESenateDistricts[member.current_district] = member;
-         // console.log('member', member);
-        // MESenateDistricts[member.current_district].partyAbbrev = MESenateDistricts[member.current_district].current_party.charAt(0).toUpperCase();
-
-
     });
     loadGeo();
 
@@ -181,7 +177,6 @@ function resetHighlight(e) {
 function mapMemberDetailClick(e) {
     freeze = 1;
     let boundary = e.target;
-    // var memberNumber = Number(boundary.feature.properties.SLDUST);
     let districtNumber = boundary.feature.properties.NAMELSAD.split(' ').pop();
 
     // console.log("mapMemberDetailClick: ", memberNumber);
@@ -216,5 +211,7 @@ $(document).on("click",".close",function(event) {
 
 function clearInfobox() {
     $sidebar.html(' ');
-    // styleDistrict(frozenDist,1,0.3,'#666',1); //TODO
+    $sidebar.append(app.welcome)
+    let $heading = $('.entry-default-text h4');
+    $heading.html("Map Help")
 }

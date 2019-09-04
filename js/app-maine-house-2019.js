@@ -1,4 +1,3 @@
-// let public_spreadsheet_url = '1nQt3d78MuITuaIzIQOep17c3ATm3uazA_S1BfocUQgU';
 let public_spreadsheet_url = '1MVQ30DNes3hozskjPNTNSYE8m-yR9PboKTokC8YNlk4';
 let senateLayer;
 let MESenateDistricts = {};
@@ -94,28 +93,24 @@ $(document).ready(function () {
     app.infoboxTemplate = Handlebars.compile(sourcebox);
 
     let html = app.template(vote_context);
+
+    let map_help = $("#welcome-map-help").html();
+    app.welcome = Handlebars.compile(map_help);
+    $sidebar.append(app.welcome)
+
     $("#priorityVotes").append(html);
 
     Tabletop.init( { key: public_spreadsheet_url,
         callback: showInfo,
         simpleSheet: true } )
-// }
-    // showInfo(data);
 });
 function showInfo(sheet_data, tabletop) {
     let scoreColor;
 
     $.each(tabletop.sheets("Maine State House").all(), function(i, member) {
-        console.log(member.score_2019)
         scoreColor = getColor(member.score_2019);
-        console.log(scoreColor);
         member['scoreColor'] = scoreColor;
-
         MESenateDistricts[member.current_district] = member;
-         // console.log('member', member);
-        // MESenateDistricts[member.current_district].partyAbbrev = MESenateDistricts[member.current_district].current_party.charAt(0).toUpperCase();
-
-
     });
     loadGeo();
 
@@ -140,7 +135,6 @@ function loadGeo() {
 
 // get color depending on score value
 function getColor(score) {
-    console.log(score);
     return score === "Medical leave" ? '#fefefe' :
         score > 99 ? '#4EAB07' :
         score > 74 ? '#82e0c3' :
@@ -184,7 +178,6 @@ function resetHighlight(e) {
 function mapMemberDetailClick(e) {
     freeze = 1;
     let boundary = e.target;
-    // var memberNumber = Number(boundary.feature.properties.SLDUST);
     let districtNumber = boundary.feature.properties.NAMELSAD.split(' ').pop();
 
     // console.log("mapMemberDetailClick: ", memberNumber);
@@ -219,5 +212,7 @@ $(document).on("click",".close",function(event) {
 
 function clearInfobox() {
     $sidebar.html(' ');
-    // styleDistrict(frozenDist,1,0.3,'#666',1); //TODO
+    $sidebar.append(app.welcome)
+    let $heading = $('.entry-default-text h4');
+    $heading.html("Map Help")
 }
