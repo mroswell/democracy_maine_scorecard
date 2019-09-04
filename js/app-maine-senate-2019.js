@@ -23,12 +23,12 @@ var vote_context =  {
         },
         {
             "vote_title": "4. Lobbyist Contribution Ban",
-            "vote_description": "LD 54 would prohibit lobbyists from contributing to candidates’ political campaigns year-round (their contributions were already banned during the legislative session.The bill that passed is much narrower in scope than we wanted--it does not include contributions from the companies or organizations that employ the lobbyists--but it's a step in the right direction.",
+            "vote_description": "LD 54 would prohibit lobbyists from contributing to candidates’ political campaigns year-round (their contributions were already banned during the legislative session. The bill that passed is much narrower in scope than we wanted — it does not include contributions from the companies or organizations that employ the lobbyists — but it's a step in the right direction.",
             "result": "RESULT: PARTIAL VICTORY"
         },
         {
             "vote_title":"5. Ranked Choice Voting",
-            "vote_description": "Constitutional Amendment LD 1477 would amend the Maine Constitution to permit ranked choice voting (RCV) in general elections for governor and state legislature.Because it 's a constitutional amendment, this bill required the approval of two-thirds in each chamber before going to the voters for ratification. Despite gaining majorities in both chambers, it failed final passage. ",
+            "vote_description": "Constitutional Amendment LD 1477 would amend the Maine Constitution to permit ranked choice voting (RCV) in general elections for governor and state legislature. Because it's a constitutional amendment, this bill required the approval of two-thirds in each chamber before going to the voters for ratification. Despite gaining majorities in both chambers, it failed final passage. ",
             "result":"RESULT: DEFEATED"
         }, {
             "vote_title":"6. Early Voting",
