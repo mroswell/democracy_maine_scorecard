@@ -153,6 +153,12 @@ h2 {
     color: #b0b0b0;
 }
 
+.fa-file-pdf {
+    color: #ff0000;
+}
+.fa-file-pdf.fa-2x {
+    font-size:1.9em;
+}
 .icon-twitter, .fa-twitter-square {
     color: #00ACED;
 }
