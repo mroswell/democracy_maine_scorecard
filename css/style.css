@@ -21,13 +21,24 @@
     line-height: 1.4;
     position: relative;
     z-index: 5;
-
 }
 
 .entry-infobox a, .entry-default-text a {
     color: #0B8973;
 }
+.entry.priority_vote {
+    height: 330px;
+    padding: 32px;
+    width:330px;
+    padding:22px;
+}
+#priorityVotes {
+    margin-left:60px;
+}
 
+.about_us {
+    margin:30px 80px;
+}
 /*.entry-header {*/
 /*    font-weight:bold;*/
 /*    padding:3px;*/

@@ -24,8 +24,6 @@
     <script src="https://kit.fontawesome.com/349ec13eb2.js"></script>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-<!--    <script type="text/javascript" src="js/vendor/handlebars.js"></script>-->
-<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/x.y.z/handlebars.min.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.7/handlebars.js" integrity="sha256-3kxM38zABJY692X6ViIlt9FsBimhck0ZlsLtuA7R+0Y=" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -96,7 +94,14 @@
         </div>
     </div>
     <div class="row">
-        <div id="allDistricts"></div>
+        <div class="about_us"><h4>Our Priority Bills</h4></div>
+        <div id="priorityVotes"></div>
+        <div class="about_us">
+            <h4>About Us</h4>
+            <p>Democracy Maine is a new partnership between two nonpartisan organizations: the League of Women of Women Voters of Maine, and Maine Citizens for Clean Elections. We lead Maine in advocating for voter rights, campaign finance reform, modern and secure elections, government ethics, and voter education and engagement.</p>
+            <p>In the 2019 legislative session, we supported six priority bills that would improve Maine’s democracy. We encourage you to contact your legislators about their votes! Thank them, express your disappointment, or both. A green thumbs up indicates a vote that supported our position. A red thumbs down indicates a vote against.</p>
+            <p>To get involved with Democracy Maine, contact us at 207-831-6223 or email info@democracymaine.org. The information on this scorecard does not constitute endorsement of any individual legislator. ©2019 Democracy Maine.</p>
+        </div>
     </div>
 </div>
 
@@ -108,26 +113,16 @@
 
 <script src="js/app-maine-senate-2019.js"></script>
 <script id="senate-template-bottom" type="text/x-handlebars-template">
-
-    <div class="entry">
-        <div style='margin-top:-5px; margin-bottom:18px; background-color: {{scoreColor}}; height:20px;'></div>
+    {{#each priority_votes}}
+    <div class="entry priority_vote">
         <div class="body">
-            <strong>District {{{current_district}}}</strong><br>
-            {{{name}}} ({{{party_affiliation}}})<br>
-            2019 Score: <strong>{{{score_2019}}}%</strong><br>
-            Bill #1: {{#if_eq bill1_score "up"}}<i class="fas fa-thumbs-up green"></i>
-            {{else}}<i class="fas fa-thumbs-down red"></i>
-            {{/if_eq}}
-            <br>
-            <a
-                    href="http://twitter.com/intent/tweet?text=NEW%21%20%40MDLCV%20interactive%20%23MDLCVScore%20map%2E%20How%20did%20your%20legislator%20do%3F%20%23MDGA18&amp;url=http://scorecard.mdlcv.org"
-                    target="_blank"><i class="fab fa-twitter-square fa-2x"></i></a>
-            <a href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fscorecard.mdlcv.org&amp;t=Maryland%20League%20of%20Conservation%20Voters%20Scorecard"
-               target="_blank"><i class="fab fa-facebook-square fa-2x"></i></a>
-            {{#if district_voice}}<br>{{{district_voice}}}{{/if}}
-            {{#if district_email}}<br>{{{district_email}}}{{/if}}
+            <h5> {{vote_title}}</h5>
+            <p>{{{vote_description}}}</p>
+            {{result}}
         </div>
     </div>
+    {{/each}}
+
 </script>
 
 <script id="senate-template-infobox" type="text/x-handlebars-template">

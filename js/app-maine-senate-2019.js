@@ -1,19 +1,50 @@
+let public_spreadsheet_url = '1nQt3d78MuITuaIzIQOep17c3ATm3uazA_S1BfocUQgU';
+let senateLayer;
+let MESenateDistricts = {};
+let app = {};
+let freeze=0;
+let $sidebar = $('#sidebar');
 
-var public_spreadsheet_url = '1nQt3d78MuITuaIzIQOep17c3ATm3uazA_S1BfocUQgU';
-var senateLayer;
-var MESenateDistricts = {};
-var app = {};
-var freeze=0;
-var $sidebar = $('#sidebar');
+var vote_context =  {
+    "priority_votes": [{
+        "vote_title":"1. Automatic Voter Registration",
+        "vote_description":"LD 1483 would automatically register eligible citizens to vote when they receive or renew their driver's license or ID at the Bureau of Motor Vehicles and/or when they apply for or renew their eligibility for MaineCare, unless they opt out. It would also pre-register 16-year-old citizens when they get their first driver's license or state ID.",
+        "result":"RESULT: SIGNED INTO LAW"
+    },
+        {
+            "vote_title":"2. National Popular Vote",
+            "vote_description": "LD 816 would have Maine join the National Popular Vote Compact, which would guarantee the Presidency to the candidate who receives the most popular votes in all 50 states and the District of Columbia. It gained enough support to pass in the Senate, but ultimately failed in the House.",
+            "result":"RESULT: DEFEATED"
+        },
+        {
+            "vote_title": "3. Presidential Primary",
+            "vote_description": "LD 1626 was the Secretary of State's bill to restore presidential primaries in Maine. This was among our highest priorities, as it would implement a more inclusive and confidential system than caucuses. Its passage means that Maine will be among states voting on Super Tuesday, March 3, 2020.",
+            "result": "RESULT: SIGNED INTO LAW"
+        },
+        {
+            "vote_title": "4. Lobbyist Contribution Ban",
+            "vote_description": "LD 54 would prohibit lobbyists from contributing to candidates’ political campaigns year-round (their contributions were already banned during the legislative session.The bill that passed is much narrower in scope than we wanted--it does not include contributions from the companies or organizations that employ the lobbyists--but it's a step in the right direction.",
+            "result": "RESULT: PARTIAL VICTORY"
+        },
+        {
+            "vote_title":"5. Ranked Choice Voting",
+            "vote_description": "Constitutional Amendment LD 1477 would amend the Maine Constitution to permit ranked choice voting (RCV) in general elections for governor and state legislature.Because it 's a constitutional amendment, this bill required the approval of two-thirds in each chamber before going to the voters for ratification. Despite gaining majorities in both chambers, it failed final passage. ",
+            "result":"RESULT: DEFEATED"
+        }, {
+            "vote_title":"6. Early Voting",
+            "vote_description": "LD 619 is an amendment to the Maine Constitution that would allow municipalities to hold early voting up to 30 days before an election. Early voting is supported by the Maine Secretary of State and the Maine Town and City Clerks Association, as well as by the League of Women Voters. The bill failed to gain the needed two-thirds majority in both chambers.",
+            "result":"RESULT: DEFEATED"
+        }]
+};
 
-var map = L.map('map', {
+let map = L.map('map', {
     scrollWheelZoom: false,
     zoomSnap: 0.25
 }).setView([45.3, -69],7);
 // var map = L.map('map', {scrollWheelZoom: true}).setView([45.3, -69],7);
 
 // control that shows state info on hover
-var info = L.control({position: 'bottomright'});
+let info = L.control({position: 'bottomright'});
 
 info.onAdd = function (map) {
     this._div = L.DomUtil.create('div', 'info');
@@ -37,17 +68,10 @@ function init() {
     } )
 }
 
-var geoStyle = function(data) {
-    var dist = data.properties.NAMELSAD.split(' ').pop();
-    console.log(dist);
-    // var sldlst = data.properties.SLDLST;
-    // sldlst = sldlst.replace(/^0+/, '');
-    // var fillColor = getColor(MESenateDistricts[dist].score_2019.toString());
-    // var rownum = Number(data.properties.rownum);
-    console.log("geoStyle MESenateDistricts[dist]",MESenateDistricts[dist]);
-    var score = MESenateDistricts[dist].score_2019;
-    console.log("SCOOOOOOOOORE", score);
-    var scoreColor = getColor(score);
+let geoStyle = function(data) {
+    let dist = data.properties.NAMELSAD.split(' ').pop();
+    let score = MESenateDistricts[dist].score_2019;
+    let scoreColor = getColor(score);
 
     return {
         fillColor: scoreColor,
@@ -61,13 +85,18 @@ var geoStyle = function(data) {
 
 window.addEventListener('DOMContentLoaded', init);
 
-var dist;
-
 $(document).ready(function () {
-    var allDistrictsSource = $("#senate-template-bottom").html();
-    app.template = Handlebars.compile(allDistrictsSource);
-    var sourcebox = $("#senate-template-infobox").html();
+    let key_votes = $("#senate-template-bottom").html();
+    app.template = Handlebars.compile(key_votes);
+
+    let sourcebox = $("#senate-template-infobox").html();
     app.infoboxTemplate = Handlebars.compile(sourcebox);
+
+    let html = app.template(vote_context);
+    console.log("app.template",app.template);
+    console.log("html", html);
+    $("#priorityVotes").append(html);
+
     Tabletop.init( { key: public_spreadsheet_url,
         callback: showInfo,
         simpleSheet: true } )
@@ -75,7 +104,7 @@ $(document).ready(function () {
     // showInfo(data);
 });
 function showInfo(sheet_data, tabletop) {
-    var scoreColor;
+    let scoreColor;
 
     $.each(tabletop.sheets("Maine State Senate").all(), function(i, member) {
         scoreColor = getColor(member.score_2019);
@@ -84,15 +113,14 @@ function showInfo(sheet_data, tabletop) {
         MESenateDistricts[member.current_district] = member;
          // console.log('member', member);
         // MESenateDistricts[member.current_district].partyAbbrev = MESenateDistricts[member.current_district].current_party.charAt(0).toUpperCase();
-        var html = app.template(member);
-        $("#allDistricts").append(html);
+
 
     });
     loadGeo();
 
 }
 // console.log('MESenateDistricts', MESenateDistricts);
-function loadGeo(district) {
+function loadGeo() {
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
         maxZoom: 18,
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
@@ -121,9 +149,9 @@ function getColor(score) {
 
 
 function highlightFeature(e) {
-    var layer = e.target;
-    var districtNumber = layer.feature.properties.NAMELSAD.split(' ').pop();
-    var memberDetail = MESenateDistricts[districtNumber];
+    let layer = e.target;
+    let districtNumber = layer.feature.properties.NAMELSAD.split(' ').pop();
+    let memberDetail = MESenateDistricts[districtNumber];
     if(!memberDetail){
         console.log("No memberDetail");
         return;
@@ -145,26 +173,25 @@ function highlightFeature(e) {
 }
 
 function resetHighlight(e) {
-    var layer = e.target;
-    senateLayer.resetStyle(e.target);
-    // layer.resetStyle(e.target);
+    let layer = e.target;
+    senateLayer.resetStyle(layer);
     info.update();
 }
 
 function mapMemberDetailClick(e) {
     freeze = 1;
-    var boundary = e.target;
+    let boundary = e.target;
     // var memberNumber = Number(boundary.feature.properties.SLDUST);
-    var districtNumber = boundary.feature.properties.NAMELSAD.split(' ').pop();
+    let districtNumber = boundary.feature.properties.NAMELSAD.split(' ').pop();
 
     // console.log("mapMemberDetailClick: ", memberNumber);
-    var member = memberDetailFunction(districtNumber);
+    let member = memberDetailFunction(districtNumber);
 }
 
 function memberDetailFunction(memberNumber) {
-    var districtDetail = MESenateDistricts[memberNumber];
-    var html = app.infoboxTemplate(districtDetail);
-    $('#sidebar').html(html);
+    let districtDetail = MESenateDistricts[memberNumber];
+    let html = app.infoboxTemplate(districtDetail);
+    $sidebar.html(html);
 }
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
@@ -180,25 +207,6 @@ function onEachFeature(feature, layer) {
 
 map.attributionControl.addAttribution('District Boundaries &copy; <a href="http://census.gov/">US Census Bureau</a>');
 
-
-// var legend = L.control({position: 'topright'});
-//
-// legend.onAdd = function (map) {
-//
-//     const div = L.DomUtil.create('div', 'info legend');
-//
-//     // div.innerHTML = labels.join('<br>');
-//     div.innerHTML = "" +
-//         "        <i style=\"background:#FF0000\"></i> 0%<br>\n" +
-//         "        <i style=\"background:#FC8400\"></i>1–24%<br>\n" +
-//         "        <i style=\"background:#FDC300\"></i> 25–49%<br>\n" +
-//         "        <i style=\"background:#FEF200\"></i> 50–74%<br>\n" +
-//         "        <i style=\"background:#82e0c3\"></i> 75–99%<br>\n" +
-//         "         <i style=\"background:#4EAB07\"></i> 100%";
-//     return div;
-// };
-//
-// legend.addTo(map);
 
 $(document).on("click",".close",function(event) {
     event.preventDefault();
