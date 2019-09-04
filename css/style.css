@@ -2,7 +2,7 @@
     float: left;
     width: 310px;
     border: solid black 1px;
-    height: 590px;
+    height: 650px;
     padding: 18px;
     margin: 8px;
     background: white;
@@ -28,16 +28,17 @@
 }
 .entry.priority_vote {
     height: 330px;
-    padding: 32px;
-    width:330px;
-    padding:22px;
+    width:322px;
+    margin:25px;
+    padding:37px;
 }
 #priorityVotes {
-    margin-left:60px;
+    margin-left:10px;
+    background-color:#f7f7f7;
 }
 
 .about_us {
-    margin:30px 80px;
+    margin:30px 17px 15px;
 }
 /*.entry-header {*/
 /*    font-weight:bold;*/
