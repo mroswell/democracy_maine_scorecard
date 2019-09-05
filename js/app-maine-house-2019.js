@@ -212,7 +212,7 @@ $(document).on("click",".close",function(event) {
 
 function clearInfobox() {
     $sidebar.html(' ');
-    $sidebar.append(app.welcome)
+    $sidebar.append(app.welcome);
     let $heading = $('.entry-default-text h4');
     $heading.html("Map Help")
 }
