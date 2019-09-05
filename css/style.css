@@ -85,7 +85,7 @@ body {
 ul {
     padding: 0 2.5em 0 2.5em;
     margin: 0;
-    list-style-image: url(../images/triangle.gif);
+    /*list-style-image: url(../images/triangle.gif);*/
     list-style-type: disc;
 }
 
@@ -266,7 +266,7 @@ p.close {
     border: solid #E9E9E9 1px;
     background-color: #ffffff;
     font-family: 'Nunito Sans', sans-serif;
-    font-size: 15.5;
+    /*font-size: 15.5px;*/
 }
 
 .child p {
