@@ -11,18 +11,13 @@
     <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico"/>
     <link rel="stylesheet" href="css/senate-style-2019.css">
     <link rel="stylesheet" href="css/style.css">
-
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" crossorigin=""/>
-    <!--    <link type="text/css" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"-->
-    <!--          media="all">-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-<!--    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">-->
 <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" integrity="sha256-PF6MatZtiJ8/c9O9HQ8uSUXr++R9KBYu4gbNG5511WE=" crossorigin="anonymous" />    -->
     <script src="./js/vendor/leaflet.js" crossorigin=""></script>
     <script src="https://kit.fontawesome.com/349ec13eb2.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.Cloudflare.com/ajax/libs/font-awesome/5.9.0/css/font-awesome.min.css" />
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.7/handlebars.js" integrity="sha256-3kxM38zABJY692X6ViIlt9FsBimhck0ZlsLtuA7R+0Y=" crossorigin="anonymous"></script>
@@ -101,10 +96,10 @@
             <!--<p id='close2' class='close'>&times;</p><br>-->
             <h4 style="text-align: center">Welcome</h4>
             <ul>
-                <li><strong>Mouseover</strong> a district for details</li>
-                <li><strong>Click a district</strong> to freeze the info panel</li>
+                <li><strong>Mouseover</strong> a district for details.</li>
+                <li><strong>Click a district</strong> to freeze the info panel.</li>
                 <li><strong>Click a bill name</strong> to scroll to description.</li>
-                <li><strong>Zoom</strong> into selected district to see street detail</li>
+                <li><strong>Zoom</strong> into selected district to see street detail.</li>
                 <li><strong>Click the 'x'</strong> to dismiss the info panel and re-enable mouseover
                     function.
                 </li>
@@ -130,7 +125,6 @@
         </div>
     </div>
     {{/each}}
-
 </script>
 
 <script id="senate-template-infobox" type="text/x-handlebars-template">
@@ -178,12 +172,15 @@
 </script>
 <script>
     Handlebars.registerHelper('if_eq', function(a, b, opts) {
+        if(typeof a !== "undefined") {
+            if (typeof a === "string") {
+                a = a.trim();
+            }
+        }
         if (a === b) {
             return opts.fn(this);
         } else if (a==="nonvote") {
             return '<i class="fas fa-minus-circle fa-2x"></i>'
-        } else if (a==="Medical leave") {
-            return 'this is medical'
         } else {
             return opts.inverse(this);
         }

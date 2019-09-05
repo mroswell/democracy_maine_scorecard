@@ -94,10 +94,10 @@
             <!--<p id='close2' class='close'>&times;</p><br>-->
             <h4 style="text-align: center">Welcome</h4>
             <ul>
-                <li><strong>Mouseover</strong> a district for details</li>
-                <li><strong>Click a district</strong> to freeze the info panel</li>
+                <li><strong>Mouseover</strong> a district for details.</li>
+                <li><strong>Click a district</strong> to freeze the info panel.</li>
                 <li><strong>Click a bill name</strong> to scroll to description.</li>
-                <li><strong>Zoom</strong> into selected district to see street detail</li>
+                <li><strong>Zoom</strong> into selected district to see street detail.</li>
                 <li><strong>Click the 'x'</strong> to dismiss the info panel and re-enable mouseover
                     function.
                 </li>
@@ -124,7 +124,6 @@
     </div>
     {{/each}}
 </script>
-
 
 <script id="senate-template-infobox" type="text/x-handlebars-template">
     <div class="entry parent" style="padding:12px; background-color: {{scoreColor}}; z-index:100;" >
@@ -168,6 +167,11 @@
 </script>
 <script>
     Handlebars.registerHelper('if_eq', function(a, b, opts) {
+        if(typeof a !== "undefined") {
+            if (typeof a === "string") {
+                a = a.trim();
+            }
+        }
         if (a === b) {
             return opts.fn(this);
         } else if (a==="nonvote") {
