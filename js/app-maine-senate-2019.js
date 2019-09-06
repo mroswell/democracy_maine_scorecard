@@ -23,7 +23,7 @@ var vote_context =  {
         },
         {
             "vote_title": "4. Lobbyist Contribution Ban",
-            "vote_description": "LD 54 would prohibit lobbyists from contributing to candidates’ political campaigns year-round (their contributions were already banned during the legislative session. The bill that passed is much narrower in scope than we wanted — it does not include contributions from the companies or organizations that employ the lobbyists — but it's a step in the right direction.",
+            "vote_description": "LD 54 would prohibit lobbyists from contributing to candidates’ political campaigns year-round (their contributions were already banned during the legislative session). The bill that passed is much narrower in scope than we wanted — it does not include contributions from the companies or organizations that employ the lobbyists — but it's a step in the right direction.",
             "result": "RESULT: PARTIAL VICTORY"
         },
         {
