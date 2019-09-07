@@ -29,6 +29,9 @@ body {
     position: relative;
     z-index: 5;
 }
+.entry.parent {
+    padding: 12px;
+}
 
 .entry-infobox a, .entry-default-text a {
     color: #0B8973;
@@ -305,3 +308,48 @@ span > i {
 }
 
 
+/* Portrait and Landscape */
+@media screen
+and (device-width: 360px)
+and (device-height: 640px)
+{
+    .entry {width:282px}
+    .entry.parent, .entry-default-text {
+        padding:8px;
+    }
+    .entry-default-text {
+        width: 230px;
+    }
+
+    #sidebar {
+        padding-left:1px;
+    }
+
+    #map {
+        float: right;
+    }
+}
+
+
+
+/* iPhone: Portrait and Landscape */
+@media only screen
+and (min-device-width: 375px)
+and (max-device-width: 667px)
+and (-webkit-min-device-pixel-ratio: 2) {
+    .entry {width:282px}
+    .entry.parent, .entry-default-text {
+        padding:8px;
+    }
+    .entry-default-text {
+        width: 230px;
+    }
+
+    #sidebar {
+        padding-left:1px;
+    }
+
+    #map {
+        float: right;
+    }
+}
