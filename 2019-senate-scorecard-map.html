@@ -2,12 +2,11 @@
 <html lang="en">
 <head>
 
-    <title>Virginia</title>
+    <title>Democracy Maine | State Senate Scorecard</title>
 
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Archivo+Narrow|Nunito+Sans|Pragati+Narrow|Roboto+Condenseda|Roboto:400,700,900&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Archivo+Narrow|Nunito+Sans|Pragati+Narrow|Roboto+Condenseda|Roboto:400,700,900&display=swap" rel="stylesheet">
 
     <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico"/>
     <link rel="stylesheet" href="css/senate-style-2019.css">
@@ -15,10 +14,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" crossorigin=""/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-
-    <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" integrity="sha256-PF6MatZtiJ8/c9O9HQ8uSUXr++R9KBYu4gbNG5511WE=" crossorigin="anonymous" />    -->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" integrity="sha256-PF6MatZtiJ8/c9O9HQ8uSUXr++R9KBYu4gbNG5511WE=" crossorigin="anonymous" />    -->
     <script src="./js/vendor/leaflet.js" crossorigin=""></script>
     <script src="https://kit.fontawesome.com/349ec13eb2.js"></script>
 
@@ -30,55 +27,66 @@
     <!-- wides go inside wrapper but outside outer and inner -->
     <div class="container" id="top">
         <div class="row">
-            <div class="col-6">
-                <h2>Virgina Senate Races
-                    </br> <small  class="text-muted">As Targeted by 31st St / Swing Left</small>
-
+            <div class="col-9">
+                <h2>Senate Scorecard Map
+<!--                    </br> <small  class="text-muted">Find out your legislators' scores.</small>-->
                 </h2>
             </div>
-            <div class="col-6">
+            <div class="col-3 ">
+
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-4 default-text">
+                <ul class="nav nav-pills flex-column flex-sm-row">
+                    <a style="background-color: #0c0b3e" class="flex-fill text-sm-center nav-link active" href="./2019-senate-scorecard-map.html">Senate</a>
+                    <a style="color:#0c0b3e;" class="flex-fill text-sm-center nav-link"  href="./2019-house-scorecard-map.html">House</a>
+                </ul>
+            </div>
+            <div class="col-8">
                 <div class='my-legend float-right'>
                     <!--div class='legend-title'>Legend:</div-->
                     <div class='legend-scale'>
                         <ul class='legend-labels' class="text-right">
                             <li>Legend:</li>
-                            <li><span style='background:#DA3326'></span>Republican Incumbent</li>
-                            <li><span style='background:#808080'></span>Open Seat</li>
-                            <!--<li><span style='background:#2C65EC'></span>Democrat Incumbent</li>-->
-                            <li><span style='background:rgb(215,215,39)'></span>Not Targeted by SwingLeft</li>
-
+                            <li><span style='background:rgb(255,0,0)'></span>0%</li>
+                            <li><span style='background:#FC8400'></span>1-24%</li>
+                            <li><span style='background:#FDC300'></span>25-49%</li>
+                            <li><span style='background:#FEF200'></span>50-74%</li>
+                            <li><span style='background:#82e0c3'></span>75-99%</li>
+                            <li><span style='background:#4EAB07'></span>100%</li>
                         </ul>
                     </div>
                     <!--<div class='legend-source'>Source: <a href="#link to source">Name of source</a></div>-->
                 </div>
             </div>
         </div>
-        <div class="row mt-2">
-            <div class="col-4 default-text">
-                <ul class="nav nav-pills flex-column flex-sm-row">
-                    <a style="background-color: #0c0b3e" class="flex-fill text-sm-center nav-link active"
-                       href="./2019-senate-map.html">Senate</a>
-                    <a style="color:#0c0b3e;" class="flex-fill text-sm-center nav-link"
-                       href="./2019-house-map.html">House</a>
-                </ul>
-            </div>
-        </div>
 
         <div class="row">
-            <div id="sidebar" class="col-4 default-text">
-            </div>
-            <div id="map" class="col-8">
-            </div>
+        <div id="sidebar" class="col-4 default-text">
+        </div>
+        <div id="map" class="col-8">
         </div>
     </div>
+    <div class="row">
+        <div class="about_us"><h4>Our Priority Bills</h4></div>
+        <div id="priorityVotes"></div>
+        <div class="about_us">
+            <h4>About Us</h4>
+            <p>Democracy Maine is a new partnership between two nonpartisan organizations: the League of Women Voters of Maine, and Maine Citizens for Clean Elections. We lead Maine in advocating for voter rights, campaign finance reform, modern and secure elections, government ethics, and voter education and engagement.</p>
+            <p>In the 2019 legislative session, we supported six priority bills that would improve Maine’s democracy. We encourage you to contact your legislators about their votes! Thank them, express your disappointment, or both. A green thumbs up indicates a vote that supported our position. A red thumbs down indicates a vote against.</p>
+            <p>To get involved with Democracy Maine, contact us at 207-831-6223 or email info@democracymaine.org. The information on this scorecard does not constitute endorsement of any individual legislator. ©2019 Democracy Maine.</p>
+        </div>
+    </div>
+</div>
 
 </div><!-- /container -->
 <!--<script type="text/javascript" src="js/vendor/tabletop.min.js"></script>-->
 <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
 
-<script type="text/javascript" src="./maps/tl_2019_51_sldu.js"></script>
+<script type="text/javascript" src="./maps/maine-state-senate-dm.js"></script>
 
-<script src="js/app-2019-senate-map.js"></script>
+<script src="js/app-maine-senate-2019.js"></script>
 
 <script id="welcome-map-help" type="text/x-handlebars-template">
     <div class="entry-default-text" style="padding-top:14px; display:block;">
@@ -88,14 +96,19 @@
             <ul>
                 <li><strong>Mouseover</strong> a district for details.</li>
                 <li><strong>Click a district</strong> to freeze the info panel.</li>
+                <li><strong>Click a bill name</strong> to scroll to its description.</li>
                 <li><strong>Zoom</strong> into selected district to see street detail.</li>
                 <li><strong>Click the 'x'</strong> to dismiss the info panel and re-enable mouseover
                     function.
                 </li>
-                <li><strong>Flip</strong> switch to show races targeted by flippable</li>
-
             </ul>
-
+            <p class="text-right" style="font-family: 'Archivo Narrow', sans-serif;">
+                Download the <a style="background-color:white; color: #0c0b3e; padding:0;" href="#"><i class="fas fa-file-pdf fa-2x" aria-hidden="true"></i> </a> PDF
+            </p>
+                    &nbsp; <a href="http://twitter.com/intent/tweet?text=Are%20your%20legislators%20democracy%20champions?%20Find%20out%20with%20Democracy%20Maine's%202019%20scorecard&amp;url=http://democracymaine.org"
+                              target="_blank"><i class="fab fa-twitter-square fa-2x"></i></a>
+                    <a href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fscorecard.democracymaine.org&amp;t=Are%20your%20legislators%20democracy%20champions?%20Find%20out%20with%20Democracy%20Maine's%202019%20scorecard"
+                       target="_blank"><i class="fab fa-facebook-square fa-2x"></i></a>
         </div>
     </div>
 </script>
@@ -103,7 +116,7 @@
     {{#each priority_votes}}
     <div class="entry priority_vote" id="bookmark_{{@index}}">
         <div class="body">
-            <h5><a href="#top">{{vote_title}}</a></h5>
+           <h5><a href="#top">{{vote_title}}</a></h5>
             <p>{{{vote_description}}}</p>
             {{result}}
         </div>
@@ -112,52 +125,55 @@
 </script>
 
 <script id="senate-template-infobox" type="text/x-handlebars-template">
-    <div class="entry parent" style="background-color: {{scoreColor}}; z-index:100;">
+    <div class="entry parent" style="background-color: {{scoreColor}}; z-index:100;" >
         <div class="infobox child">
             <button type='button' id='close' class='close'>&times;</button>
             <br>
-            <h4 style="text-align:center">District {{{district}}}</h4>
-            <p style="text-align:center">
-                {{#if ldi}}LDI: {{{ldi}}}<br/>{{/if}}
-                {{#if incumbent_party}}Incumbent (or Open): {{{incumbent_party}}}<br/>{{/if}}
-                {{#if d_r_2015}}Dem/Rep 2017 (old district): {{{d_r_2015}}}<br/>{{/if}}
-                {{#if northam_gillespie}}Northam/Gillespie: {{{northam_gillespie}}}<br/>{{/if}}
-            </p>
+            <p class="child-header"> {{{name}}} ({{{party_affiliation}}})</p>
+            <p style="text-align:center">District {{{current_district}}}</p>
+            {{#if district_email}}<p style="font-family: 'Archivo Narrow', sans-serif;text-align:center">{{{district_email}}}</p>{{/if}}
+            <p style="font-family: 'Archivo Narrow', sans-serif;text-align:center; font-size:13px">Election Funding Method: {{#if_eq clean_elections "CE"}}Clean Elections Program
+                {{else}}Private Funding
+                {{/if_eq}}</p>
+            <p><a href="#bookmark_0">1. Automatic Voter Registration</a>: {{#if_eq bill1_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
+                {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
+                {{/if_eq}}</p>
+            <p><a href="#bookmark_1">2. National Popular Vote</a>: {{#if_eq bill2_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
+                {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
+                {{/if_eq}}</p>
+            <p><a href="#bookmark_2">3. Presidential Primary</a>: {{#if_eq bill3_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
+                {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
+                {{/if_eq}}</p>
+            <p><a href="#bookmark_3">4. Lobbyist Contribution Ban</a>: {{#if_eq bill4_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
+                {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
+                {{/if_eq}}</p>
+            <p><a href="#bookmark_4">5. Ranked Choice Voting</a>: {{#if_eq bill5_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
+                {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
+                {{/if_eq}}</p>
+            <p><a href="#bookmark_5">6. Early Voting</a>: {{#if_eq bill6_score "up"}}<i class="fas fa-thumbs-up fa-2x"></i>
+                {{else}}<i class="fas fa-thumbs-down fa-2x"></i>
+                {{/if_eq}}</p>
 
-            <!--<p class="child-header" style='background-color: {{#if_eq party "R"}}#DA3326{{else}}#2C65EC{{/if_eq}}'> {{{name}}} ({{{party}}})</p>-->
-
-
-            {{#if d_candidate}}<p class="child-header" style='background-color: #2C65EC'>{{d_candidate}} (D)</p>{{/if}}
-
-            <p>{{#if donate_link}}Donate link: <a target="_blank" style="text-decoration:underline"
-                                                  href="{{donate_link}}">Donate</a>{{/if}}</p>
-            <p>{{#if video_link}}Video: <a target="_blank" style="text-decoration:underline" href="{{video_link}}">{{video_link}}{{/if}}</a>
-            </p>
-            <!--<p>{{#if dem_cash_on_hand_8_31_19}}Cash on Hand: {{dem_cash_on_hand_8_31_19}}{{/if}}</p>-->
-
-            {{#if r_candidate}}<p class="child-header" style='background-color: #DA3326'>{{r_candidate}} (D)</p>{{/if}}
-            <p>{{#if r_cash_on_hand}}Cash on Hand: {{r_cash_on_hand}}{{/if}}</p>
-
-            {{#if commentary}}<p>
-            <hr/>
-            </p><strong>Notes:</strong> {{commentary}} (D)</p>{{/if}}
-
+            <p>2019 Score: <span class="score">{{{score_2019}}}%</span></p>
             <br>
 
+            &nbsp; <a href="http://twitter.com/intent/tweet?text=Are%20your%20legislators%20democracy%20champions?%20Find%20out%20with%20Democracy%20Maine's%202019%20scorecard&amp;url=http://democracymaine.org"
+                    target="_blank"><i class="fab fa-twitter-square fa-2x"></i></a>
+            <a href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fscorecard.democracymaine.org&amp;t=Are%20your%20legislators%20democracy%20champions?%20Find%20out%20with%20Democracy%20Maine's%202019%20scorecard"
+               target="_blank"><i class="fab fa-facebook-square fa-2x"></i></a>
         </div>
     </div>
 </script>
 <script>
-    Handlebars.registerHelper('if_eq', function (a, b, opts) {
-        if (typeof a !== "undefined") {
+    Handlebars.registerHelper('if_eq', function(a, b, opts) {
+        if(typeof a !== "undefined") {
             if (typeof a === "string") {
                 a = a.trim();
             }
         }
-
         if (a === b) {
             return opts.fn(this);
-        } else if (a === "nonvote") {
+        } else if (a==="nonvote") {
             return '<i class="fas fa-minus-circle fa-2x"></i>'
         } else {
             return opts.inverse(this);
